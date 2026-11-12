@@ -755,30 +755,79 @@ footer p {
 </div>
 </section>
 
+
 <section id="form">
 <h2 class="section-title">28. Send a Message</h2>
-<form action="#" method="post">
+
+<form id="projectInquiryForm">
 <fieldset>
 <legend>Project Inquiry Form</legend>
-<p><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="Your full name" required></p>
-<p><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="Your email address" required></p>
-<p><label for="service">Select Service</label>
-<select id="service" name="service">
+
+<p>
+<label for="name">Full Name</label>
+<input type="text" id="name" name="name" placeholder="Your full name" required>
+</p>
+
+<p>
+<label for="email">Email Address</label>
+<input type="email" id="email" name="email" placeholder="Your email address" required>
+</p>
+
+<p>
+<label for="service">Select Service</label>
+<select id="service" name="service" required>
 <option value="">Choose a service</option>
 <option>Graphic Design</option>
 <option>Video Editing</option>
 <option>Website Design</option>
 <option>AI Creative Work</option>
 <option>Other</option>
-</select></p>
-<p><label for="message">Your Message</label><textarea id="message" name="message" rows="6" placeholder="Tell me about your project..." required></textarea></p>
-<button type="submit">Submit Inquiry</button>
+</select>
+</p>
+
+<p>
+<label for="message">Your Message</label>
+<textarea id="message" name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
+</p>
+
+<button type="submit">Send Inquiry on WhatsApp & Gmail</button>
 <button type="reset">Reset Form</button>
 </fieldset>
 </form>
-<p class="small-note">This form requires a backend or form-processing service to deliver messages.</p>
-</section>
 
+<p class="small-note">
+Your inquiry will open in WhatsApp and Gmail for sending.
+</p>
+
+<script>
+document.getElementById("projectInquiryForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const service = document.getElementById("service").value;
+  const message = document.getElementById("message").value.trim();
+
+  const inquiry = `NEW PROJECT INQUIRY
+
+Name: ${name}
+Email: ${email}
+Service: ${service}
+
+Message:
+${message}`;
+
+  const whatsappURL = "https://wa.me/923344739333?text=" + encodeURIComponent(inquiry);
+
+  const gmailURL = "https://mail.google.com/mail/?view=cm&fs=1&to=abubakarmoeenusmani@gmail.com&su=" +
+    encodeURIComponent("New Project Inquiry") +
+    "&body=" + encodeURIComponent(inquiry);
+
+  window.open(whatsappURL, "_blank");
+  window.open(gmailURL, "_blank");
+});
+</script>
+</section>
 <section id="faq">
 <h2 class="section-title">29. Frequently Asked Questions</h2>
 <details><summary>Who is Abubakar Usmani?</summary><p>A creative professional interested in graphic design, video editing, website design and AI tools.</p></details>
